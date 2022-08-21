@@ -1,0 +1,23 @@
+connector:
+  name: gitexperience
+  identifier: gitexperience
+  description: ""
+  orgIdentifier: default
+  projectIdentifier: gitexperience
+  type: Github
+  spec:
+    url: https://github.com/fmazlabs
+    validationRepo: Docker-AI
+    authentication:
+      type: Http
+      spec:
+        type: UsernameToken
+        spec:
+          username: fmazlabs
+          tokenRef: account.fmharnessazlabsgit
+    apiAccess:
+      type: Token
+      spec:
+        tokenRef: account.fmharnessazlabsgit
+    executeOnDelegate: false
+    type: Account
