@@ -1,35 +1,39 @@
 pipeline:
-    name: GitExperience
-    identifier: GitExperience
-    projectIdentifier: gitexperience
-    orgIdentifier: default
-    tags: {}
-    properties:
-        ci:
-            codebase:
-                connectorRef: gitexperience
-                repoName: Docker-AI
-                build: <+input>
-    stages:
-        - stage:
-              name: build
-              identifier: build
-              description: ""
-              type: CI
-              spec:
-                  cloneCodebase: true
-                  execution:
-                      steps:
-                          - step:
-                                type: Run
-                                name: ECHO
-                                identifier: ECHO
-                                spec:
-                                    connectorRef: account.harnessImage
-                                    image: alpine:latest
-                                    shell: Sh
-                                    command: echo " awesome CI- Git Experience"
-                  infrastructure:
-                      type: KubernetesHosted
-                      spec:
-                          identifier: k8s-hosted-infra
+  name: GitExperience
+  identifier: GitExperience
+  projectIdentifier: gitexperience
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: gitexperience
+        repoName: Docker-AI
+        build: <+input>
+  stages:
+    - stage:
+        name: build
+        identifier: build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: ECHO
+                  identifier: ECHO
+                  spec:
+                    connectorRef: account.harnessImage
+                    image: alpine:latest
+                    shell: Sh
+                    command: echo " awesome CI- Git Experience"
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: account.Harness_Kubernetes_Cluster
+              namespace: ns-francis
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
