@@ -7,8 +7,8 @@ pipeline:
   properties:
     ci:
       codebase:
-        connectorRef: gitexperience
-        repoName: Docker-AI
+        connectorRef: account.fmazlabsgit
+        repoName: " flask-docker-hello-world"
         build: <+input>
   stages:
     - stage:
